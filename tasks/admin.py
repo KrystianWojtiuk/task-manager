@@ -41,9 +41,13 @@ class TaskTypeAdmin(admin.ModelAdmin):
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     list_display = ["name", "description", "deadline", "is_complete",
-                    "priority", "task_type", "project", "display_assignees", ]
+                    "priority", "task_type", "display_project", "display_assignees", ]
     list_filter = ["is_complete", "priority", "task_type", "project", ]
     search_fields = ["name", "description", ]
 
     def display_assignees(self, obj):
         return ", ".join([str(worker) for worker in obj.assignees.all()])
+
+    def display_project(self, obj):
+        return str(obj.project)
+    display_project.short_description = 'project'
