@@ -12,11 +12,11 @@ class Team(models.Model):
 
 
 class Worker(AbstractUser):
-    position = models.ForeignKey(Team, on_delete=models.PROTECT)
+    position = models.ForeignKey(Position, on_delete=models.PROTECT, null=True, blank=True)
     team = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return self.username
+        return f"{self.first_name} {self.last_name} ({self.position})"
 
 
 class Project(models.Model):
