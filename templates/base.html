@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>
+  {% block title %}
+    Tasks
+  {% endblock %}
+  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid"></div>
+  <div class="row">
+    <div class="col-sm-3">
+      {% block sidebar %}
+        <a href="{% url 'tasks:index' %}" class="btn btn-outline-secondary">Home</a><br>
+        <a href="#" class="btn btn-outline-secondary">Workers</a><br>
+        <a href="#" class="btn btn-outline-secondary">Projects</a><br>
+        <a href="#" class="btn btn-outline-secondary">Tasks</a><br>
+      {% endblock %}
+    </div>
+    <div class="col-sm-9">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+  </div>
+</body>
+</html>
