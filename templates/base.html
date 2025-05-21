@@ -16,10 +16,7 @@
   <div class="row">
     <div class="col-sm-3">
       {% block sidebar %}
-        <a href="{% url 'tasks:index' %}" class="btn btn-outline-secondary">Home</a><br>
-        <a href="#" class="btn btn-outline-secondary">Workers</a><br>
-        <a href="#" class="btn btn-outline-secondary">Projects</a><br>
-        <a href="#" class="btn btn-outline-secondary">Tasks</a><br>
+        {% include "includes/sidebar.html" %}
       {% endblock %}
     </div>
     <div class="col-sm-9">
