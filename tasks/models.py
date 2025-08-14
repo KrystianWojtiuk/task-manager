@@ -9,17 +9,8 @@ class Position(models.Model):
         return self.name
 
 
-class Team(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-
-    def __str__(self):
-        return self.name
-
-
 class Worker(AbstractUser):
     position = models.ForeignKey(Position, on_delete=models.PROTECT, null=True, blank=True)
-    team = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.position})"
@@ -30,7 +21,6 @@ class Project(models.Model):
     description = models.TextField()
     deadline = models.DateTimeField()
     is_complete = models.BooleanField(default=False)
-    teams = models.ManyToManyField(Team, related_name='projects')
 
     def __str__(self):
         return self.name

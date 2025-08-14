@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from tasks.models import Position, TaskType, Team, Worker, Project, Task
+from tasks.models import Position, TaskType, Worker, Project, Task
 
 
 @admin.register(Position)
@@ -9,28 +9,18 @@ class PositionAdmin(admin.ModelAdmin):
     search_fields = ["name", ]
 
 
-@admin.register(Team)
-class TeamAdmin(admin.ModelAdmin):
-    list_display = ["name", "description", ]
-    search_fields = ["name", "description", ]
-
-
 @admin.register(Worker)
 class WorkerAdmin(UserAdmin):
-    list_display = UserAdmin.list_display + ("position", "team", )
-    fieldsets = UserAdmin.fieldsets + (("Additional info", {"fields": ("position", "team",)}),)
+    list_display = UserAdmin.list_display + ("position",)
+    fieldsets = UserAdmin.fieldsets + (("Additional info", {"fields": ("position",)}),)
 
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ["name", "description", "deadline",
-                    "is_complete", "display_teams", ]
-    list_filter = ["is_complete", "teams", ]
+                    "is_complete"]
+    list_filter = ["is_complete"]
     search_fields = ["name", "description", ]
-
-    def display_teams(self, obj):
-        return ", ".join([team.name for team in obj.teams.all()])
-    display_teams.short_description = 'teams'
 
 
 @admin.register(TaskType)
