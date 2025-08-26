@@ -22,6 +22,7 @@ class WorkerListView(ListView):
     model = Worker
     template_name = "manager/worker_list.html"
     context_object_name = "workers"
+    queryset = Worker.objects.all().select_related("position")
 
 
 class ProjectListView(ListView):
