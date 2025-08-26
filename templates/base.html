@@ -18,7 +18,10 @@
 
     <script>
         $(document).ready(function () {
-            $('#myTable').DataTable();
+            $('#myTable').DataTable({
+                "pageLength": 5,  // default rows per page
+                "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]]
+            });
         });
     </script>
     {% load static %}
