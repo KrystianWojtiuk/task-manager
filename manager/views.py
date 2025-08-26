@@ -24,7 +24,7 @@ class WorkerListView(ListView):
     context_object_name = "workers"
 
 
-class ProjectsListView(ListView):
+class ProjectListView(ListView):
     model = Project
     template_name = "manager/project_list.html"
     context_object_name = "projects"
