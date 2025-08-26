@@ -35,6 +35,7 @@ class TaskListView(ListView):
     model = Task
     template_name = "manager/task_list.html"
     context_object_name = "tasks"
+    queryset = Task.objects.all().select_related("task_type").select_related("project")
 
     def get_queryset(self):
         qs = super().get_queryset()
