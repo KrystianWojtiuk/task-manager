@@ -35,3 +35,15 @@ class TaskListView(ListView):
     model = Task
     template_name = "manager/task_list.html"
     context_object_name = "tasks"
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        project_id = self.request.GET.get("project")
+        if project_id:
+            qs = qs.filter(project_id=project_id)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["projects"] = Project.objects.all()
+        return context
