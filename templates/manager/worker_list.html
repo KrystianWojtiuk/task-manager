@@ -10,7 +10,6 @@
     <table class="table table-striped table-hover table-bordered align-middle" id="myTable">
       <thead class="table-dark">
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Full Name</th>
         <th scope="col">Position</th>
         <th scope="col">Email</th>
@@ -19,7 +18,6 @@
       <tbody>
       {% for worker in workers %}
         <tr>
-          <th scope="row">{{ forloop.counter }}</th>
           <td>{{ worker.first_name }} {{ worker.last_name }}</td>
           <td>{{ worker.position.name }}</td>
           <td>{{ worker.email }}</td>
