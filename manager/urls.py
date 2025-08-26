@@ -1,8 +1,8 @@
 from django.urls import path
 
-from tasks.views import index, WorkerListView
+from manager.views import index, WorkerListView
 
-app_name = "tasks"
+app_name = "manager"
 
 urlpatterns = [
     path("", index, name="index"),
