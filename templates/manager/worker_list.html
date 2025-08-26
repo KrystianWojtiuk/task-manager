@@ -3,3 +3,18 @@
 {% block title %}
   Workers
 {% endblock %}
+
+{% block content %}
+  <h1> Workers </h1>
+
+  {% if workers %}
+    <ul>
+      {% for worker in workers %}
+        <li>{{ worker }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No workers found</p>
+  {% endif %}
+
+{% endblock %}

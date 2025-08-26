@@ -3,3 +3,18 @@
 {% block title %}
   Tasks
 {% endblock %}
+
+{% block content %}
+  <h1> Tasks </h1>
+
+  {% if tasks %}
+    <ul>
+      {% for task in tasks %}
+        <li>{{ task }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No tasks found</p>
+  {% endif %}
+
+{% endblock %}

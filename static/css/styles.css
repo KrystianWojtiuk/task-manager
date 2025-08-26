@@ -1,3 +1,7 @@
+body {
+    background: darkolivegreen;
+}
+
 .sidebar {
     display: grid;
     gap: 0.5rem;
