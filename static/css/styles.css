@@ -2,6 +2,10 @@ body {
     background: darkolivegreen;
 }
 
+.row {
+    align-items: start;
+}
+
 .sidebar {
     display: grid;
     gap: 0.5rem;
