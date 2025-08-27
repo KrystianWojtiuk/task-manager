@@ -29,14 +29,18 @@ class WorkerListView(ListView):
 
 class WorkerDetailView(DetailView):
     model = Worker
-    queryset = Worker.objects.select_related("position").prefetch_related("tasks")
+    queryset = (
+        Worker.objects
+        .select_related("position")
+        .prefetch_related("tasks__task_type")
+    )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         worker = self.object
-
-        context["completed_tasks"] = worker.tasks.filter(is_complete=True)
-        context["unfinished_tasks"] = worker.tasks.filter(is_complete=False)
+        all_tasks = list(worker.tasks.all())
+        context["completed_tasks"] = [t for t in all_tasks if t.is_complete]
+        context["unfinished_tasks"] = [t for t in all_tasks if not t.is_complete]
 
         return context
 
