@@ -9,11 +9,6 @@
 
 <div class="card shadow p-4" style="width: 22rem;">
   <h2 class="mb-3 text-center">Login</h2>
-  <div class="alert alert-info">
-    <strong>Test Login:</strong><br>
-    Username: <code>user1</code><br>
-    Password: <code>Template1</code>
-  </div>
 
   {% if form.errors %}
     <div class="alert alert-danger">
@@ -32,6 +27,12 @@
       {{ form.password }}
     </div>
     <button type="submit" class="btn btn-primary w-100">Login</button>
+
+    <div class="alert alert-info mt-3">
+      <strong>Test Login:</strong><br>
+      Username: <code>user1</code><br>
+      Password: <code>Template1</code>
+    </div>
   </form>
 </div>
 
