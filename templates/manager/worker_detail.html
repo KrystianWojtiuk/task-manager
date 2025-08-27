@@ -6,12 +6,14 @@
 
 {% block content %}
   <h1> {{ worker.first_name }} {{ worker.last_name }} </h1>
+  <br>
   <h2> {{ worker.position }} | {{ worker.email }}</h2>
+  <br>
   <h3> Tasks: </h3>
-  {% if worker.tasks %}
+  {% if worker.tasks.all %}
     <ul>
-      {% for task in worker.tasks %}
-        <li>task.name</li>
+      {% for task in worker.tasks.all %}
+        <li>{{ task.name }}</li>
       {% endfor %}
     </ul>
   {% else %}
