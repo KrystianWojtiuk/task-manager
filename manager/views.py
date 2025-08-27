@@ -1,13 +1,12 @@
-from multiprocessing.pool import worker
-
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views import View
 from django.views.generic import ListView, DetailView
 
 from manager.models import Worker, Task, Project
 
 
+@login_required
 def index(request):
     num_workers = Worker.objects.count()
     num_projects = Project.objects.count()
@@ -20,14 +19,14 @@ def index(request):
     return render(request, "manager/index.html", context=context)
 
 
-class WorkerListView(ListView):
+class WorkerListView(LoginRequiredMixin, ListView):
     model = Worker
     template_name = "manager/worker_list.html"
     context_object_name = "workers"
     queryset = Worker.objects.all().select_related("position")
 
 
-class WorkerDetailView(DetailView):
+class WorkerDetailView(LoginRequiredMixin, DetailView):
     model = Worker
     queryset = (
         Worker.objects
@@ -45,13 +44,13 @@ class WorkerDetailView(DetailView):
         return context
 
 
-class ProjectListView(ListView):
+class ProjectListView(LoginRequiredMixin, ListView):
     model = Project
     template_name = "manager/project_list.html"
     context_object_name = "projects"
 
 
-class ProjectDetailView(DetailView):
+class ProjectDetailView(LoginRequiredMixin, DetailView):
     model = Project
     queryset = Project.objects.prefetch_related(
         "tasks__assignees",
@@ -59,7 +58,7 @@ class ProjectDetailView(DetailView):
     )
 
 
-class TaskListView(ListView):
+class TaskListView(LoginRequiredMixin, ListView):
     model = Task
     template_name = "manager/task_list.html"
     context_object_name = "tasks"
@@ -78,6 +77,6 @@ class TaskListView(ListView):
         return context
 
 
-class TaskDetailView(DetailView):
+class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     queryset = Task.objects.select_related("task_type").select_related("project").prefetch_related("assignees")
