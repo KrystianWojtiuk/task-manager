@@ -44,7 +44,9 @@
           <td>{{ task.priority }}</td>
           <td>{{ task.deadline }}</td>
           <td>{{ task.is_complete }}</td>
-          <td>{{ task.project.name }}</td>
+          <td>
+            <a href={% url 'manager:project-detail' task.project.id %}>{{ task.project.name }}</a>
+          </td>
         </tr>
       {% empty %}
         <tr>

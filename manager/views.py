@@ -49,6 +49,10 @@ class ProjectListView(ListView):
 
 class ProjectDetailView(DetailView):
     model = Project
+    queryset = Project.objects.prefetch_related(
+        "tasks__assignees",
+        "tasks__task_type"
+    )
 
 
 class TaskListView(ListView):

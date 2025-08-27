@@ -62,7 +62,7 @@ class Task(models.Model):
     )
     task_type = models.ForeignKey(TaskType, on_delete=models.PROTECT)
     assignees = models.ManyToManyField(Worker, related_name='tasks', blank=True)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks')
 
     class Meta:
         ordering = ('deadline',)
