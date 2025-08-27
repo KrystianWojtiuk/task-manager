@@ -47,6 +47,10 @@ class ProjectListView(ListView):
     context_object_name = "projects"
 
 
+class ProjectDetailView(DetailView):
+    model = Project
+
+
 class TaskListView(ListView):
     model = Task
     template_name = "manager/task_list.html"

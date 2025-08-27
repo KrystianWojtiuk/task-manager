@@ -37,7 +37,9 @@
       <tbody>
       {% for task in tasks %}
         <tr>
-          <td>{{ task.name }}</td>
+          <td>
+            <a href={% url 'manager:task-detail' task.id %}>{{ task.name }}</a>
+          </td>
           <td>{{ task.task_type }}</td>
           <td>{{ task.priority }}</td>
           <td>{{ task.deadline }}</td>
