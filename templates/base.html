@@ -28,16 +28,16 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   {% endblock %}
 </head>
-<body>
+<body class="bg-dark text-white">
 <div class="container-fluid mt-4">
-  <div class="row">
-    <div class="col-sm-2 sidebar">
+  <div class="row align-items-start">
+    <div class="col-sm-2 d-grid gap-2">
       {% block sidebar %}
         {% include "includes/sidebar.html" %}
       {% endblock %}
     </div>
-    <div class="col-sm-10 content">
-      <div class="content-wrapper">
+    <div class="col-sm-10 d-flex justify-content-center">
+      <div class="content-wrapper" style="max-width: 800px; width:100%">
         {% block content %}
 
         {% endblock %}
