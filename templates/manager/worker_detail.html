@@ -5,18 +5,25 @@
 {% endblock %}
 
 {% block content %}
-  <h1> {{ worker.first_name }} {{ worker.last_name }} </h1>
-  <br>
-  <h2> {{ worker.position }} | {{ worker.email }}</h2>
-  <br>
-  <h3> Tasks: </h3>
-  {% if worker.tasks.all %}
-    <ul>
-      {% for task in worker.tasks.all %}
-        <li>{{ task.name }}</li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No tasks</p>
-  {% endif %}
+  <h2>{{ worker.first_name }} {{ worker.last_name }}</h2>
+  <p>Position: {{ worker.position.name }}</p>
+  <p>Email: {{ worker.email }}</p>
+
+  <h3>Completed Tasks</h3>
+  <ul>
+    {% for task in completed_tasks %}
+      <li>{{ task.name }} (Deadline: {{ task.deadline }})</li>
+    {% empty %}
+      <li>No completed tasks</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Unfinished Tasks</h3>
+  <ul>
+    {% for task in unfinished_tasks %}
+      <li>{{ task.name }} (Deadline: {{ task.deadline }})</li>
+    {% empty %}
+      <li>No unfinished tasks</li>
+    {% endfor %}
+  </ul>
 {% endblock %}

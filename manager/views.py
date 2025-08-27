@@ -1,3 +1,5 @@
+from multiprocessing.pool import worker
+
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
@@ -27,6 +29,16 @@ class WorkerListView(ListView):
 
 class WorkerDetailView(DetailView):
     model = Worker
+    queryset = Worker.objects.select_related("position").prefetch_related("tasks")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        worker = self.object
+
+        context["completed_tasks"] = worker.tasks.filter(is_complete=True)
+        context["unfinished_tasks"] = worker.tasks.filter(is_complete=False)
+
+        return context
 
 
 class ProjectListView(ListView):
@@ -52,3 +64,8 @@ class TaskListView(ListView):
         context = super().get_context_data(**kwargs)
         context["projects"] = Project.objects.all()
         return context
+
+
+class TaskDetailView(DetailView):
+    model = Task
+    queryset = Task.objects.select_related("task_type").select_related("project").prefetch_related("assignees")
