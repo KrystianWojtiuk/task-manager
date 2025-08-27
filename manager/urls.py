@@ -6,7 +6,7 @@ from manager.views import index, WorkerListView, TaskListView, ProjectListView, 
 app_name = "manager"
 
 urlpatterns = [
-    path("", index, name="index"),
+    path("index/", index, name="index"),
     path("workers/", WorkerListView.as_view(), name="workers"),
     path("workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
     path("projects/", ProjectListView.as_view(), name="projects"),
