@@ -10,7 +10,10 @@
     <!-- Worker Info Card -->
     <div class="card mb-4">
       <div class="card-body">
-        <h2 class="card-title">{{ worker.first_name }} {{ worker.last_name }}</h2>
+        <h2 class="card-title">
+          {{ worker.first_name }} {{ worker.last_name }}
+          {% if request.user == worker %} (You) {% endif %}
+        </h2>
         <p class="card-text"><strong>Position:</strong> {{ worker.position.name }}</p>
         <p class="card-text"><strong>Email:</strong> {{ worker.email }}</p>
       </div>
