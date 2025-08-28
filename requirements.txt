@@ -1,2 +1,4 @@
 Django==5.2.1
 gunicorn
+django-crispy-forms
+crispy-bootstrap5
