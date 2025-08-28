@@ -12,7 +12,7 @@
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Deadline</th>
-        <th scope="col">Complete</th>
+        <th scope="col">Completed</th>
       </tr>
       </thead>
       <tbody>
@@ -24,7 +24,7 @@
             </a>
           </td>
           <td>{{ project.deadline }}</td>
-          <td>{{ project.is_complete }}</td>
+          <td>{{ project.is_complete|yesno:"✅,❌" }}</td>
         </tr>
       {% empty %}
         <tr>

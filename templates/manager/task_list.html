@@ -30,7 +30,7 @@
         <th scope="col">Type</th>
         <th scope="col">Priority</th>
         <th scope="col">Deadline</th>
-        <th scope="col">Complete</th>
+        <th scope="col">Completed</th>
         <th scope="col">Project</th>
       </tr>
       </thead>
@@ -43,7 +43,7 @@
           <td>{{ task.task_type }}</td>
           <td>{{ task.priority }}</td>
           <td>{{ task.deadline }}</td>
-          <td>{{ task.is_complete }}</td>
+          <td>{{ task.is_complete|yesno:"✅,❌" }}</td>
           <td>
             <a href={% url 'manager:project-detail' task.project.id %}>{{ task.project.name }}</a>
           </td>

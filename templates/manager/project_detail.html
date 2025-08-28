@@ -15,6 +15,7 @@
           <p class="card-text">{{ object.description }}</p>
         {% endif %}
         <p class="card-text"><strong>Deadline:</strong> {{ object.deadline }}</p>
+        <p class="card-text"><strong>Completed:</strong> {{ object.is_complete|yesno:"✅,❌" }}</p>
       </div>
     </div>
 
