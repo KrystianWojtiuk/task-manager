@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from manager.models import Worker, Task, Project
 
@@ -70,6 +70,12 @@ class ProjectFormView(LoginRequiredMixin, CreateView, UpdateView):
         if pk:
             return Project.objects.get(pk=pk)
         return None
+
+
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
+    model = Project
+    success_url = reverse_lazy("manager:project_list")
+    template_name = "manager/project_delete.html"
 
 
 class TaskListView(LoginRequiredMixin, ListView):

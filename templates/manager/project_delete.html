@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="card shadow p-4">
+      <h2 class="text-danger mb-3">Delete Project</h2>
+
+      <p>
+        Are you sure you want to delete the project
+        <strong>{{ object.name }}</strong>?
+      </p>
+
+      <div class="alert alert-warning">
+        ⚠️ Warning: All tasks associated with this project will also be permanently deleted.
+      </div>
+
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, delete</button>
+        <a href="{% url 'manager:project-detail' object.pk %}" class="btn btn-secondary">Cancel</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}
