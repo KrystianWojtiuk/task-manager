@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView
 
 from manager.models import Worker, Task, Project
 
@@ -56,6 +57,13 @@ class ProjectDetailView(LoginRequiredMixin, DetailView):
         "tasks__assignees",
         "tasks__task_type"
     )
+
+
+class ProjectCreateView(LoginRequiredMixin, CreateView):
+    model = Project
+    fields = "__all__"
+    success_url = reverse_lazy("manager:project_list")
+    template_name = "manager/project_form.html"
 
 
 class TaskListView(LoginRequiredMixin, ListView):

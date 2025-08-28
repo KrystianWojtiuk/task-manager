@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 
 from manager.views import index, WorkerListView, TaskListView, ProjectListView, WorkerDetailView, TaskDetailView, \
-    ProjectDetailView
+    ProjectDetailView, ProjectCreateView
 
 app_name = "manager"
 
@@ -12,7 +12,8 @@ urlpatterns = [
     path("workers/", WorkerListView.as_view(), name="workers"),
     path("workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
     path("projects/", ProjectListView.as_view(), name="projects"),
-    path("tasks/", TaskListView.as_view(), name="tasks"),
-    path("tasks/<int:pk>/", TaskDetailView.as_view(), name="task-detail"),
     path("projects/<int:pk>/", ProjectDetailView.as_view(), name="project-detail"),
+    path("projects/create/", ProjectCreateView.as_view(), name="project-create"),
+    path("tasks/", TaskListView.as_view(), name="tasks"),
+    path("tasks/<int:pk>/", TaskDetailView.as_view(), name="task-detail")
 ]
