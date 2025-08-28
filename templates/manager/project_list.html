@@ -6,7 +6,9 @@
 
 {% block content %}
   <div class="container">
-    <h1 class="text-center mb-1">Projects</h1>
+    <h1 class="text-center mb-1">Projects <a href="{% url 'manager:project-create' %}" class="btn btn-success">
+      Add
+    </a></h1>
     <table class="table table-striped table-hover table-bordered align-middle" id="myTable">
       <thead class="table-dark">
       <tr>
