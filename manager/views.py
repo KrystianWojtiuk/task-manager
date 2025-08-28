@@ -88,3 +88,10 @@ class TaskListView(LoginRequiredMixin, ListView):
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     queryset = Task.objects.select_related("task_type").select_related("project").prefetch_related("assignees")
+
+
+class TaskCreateView(LoginRequiredMixin, CreateView):
+    model = Task
+    fields = "__all__"
+    success_url = reverse_lazy("manager:task_list")
+    template_name = "manager/task_form.html"
