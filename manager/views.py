@@ -62,7 +62,7 @@ class ProjectDetailView(LoginRequiredMixin, DetailView):
 class ProjectFormView(LoginRequiredMixin, CreateView, UpdateView):
     model = Project
     fields = "__all__"
-    success_url = reverse_lazy("manager:project_list")
+    success_url = reverse_lazy("manager:projects")
     template_name = "manager/project_form.html"
 
     def get_object(self, queryset=None):
@@ -74,7 +74,7 @@ class ProjectFormView(LoginRequiredMixin, CreateView, UpdateView):
 
 class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model = Project
-    success_url = reverse_lazy("manager:project_list")
+    success_url = reverse_lazy("manager:projects")
     template_name = "manager/project_delete.html"
 
 
@@ -105,7 +105,7 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
 class TaskFormView(LoginRequiredMixin, CreateView, UpdateView):
     model = Task
     fields = "__all__"
-    success_url = reverse_lazy("manager:task_list")
+    success_url = reverse_lazy("manager:tasks")
     template_name = "manager/task_form.html"
 
     def get_object(self, queryset=None):
@@ -113,3 +113,9 @@ class TaskFormView(LoginRequiredMixin, CreateView, UpdateView):
         if pk:
             return Task.objects.get(pk=pk)
         return None
+
+
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
+    model = Task
+    success_url = reverse_lazy("manager:tasks")
+    template_name = "manager/task_delete.html"
