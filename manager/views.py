@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from manager.models import Worker, Task, Project
 
@@ -59,11 +59,17 @@ class ProjectDetailView(LoginRequiredMixin, DetailView):
     )
 
 
-class ProjectCreateView(LoginRequiredMixin, CreateView):
+class ProjectFormView(LoginRequiredMixin, CreateView, UpdateView):
     model = Project
     fields = "__all__"
     success_url = reverse_lazy("manager:project_list")
     template_name = "manager/project_form.html"
+
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get("pk")
+        if pk:
+            return Project.objects.get(pk=pk)
+        return None
 
 
 class TaskListView(LoginRequiredMixin, ListView):
@@ -90,8 +96,14 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
     queryset = Task.objects.select_related("task_type").select_related("project").prefetch_related("assignees")
 
 
-class TaskCreateView(LoginRequiredMixin, CreateView):
+class TaskFormView(LoginRequiredMixin, CreateView, UpdateView):
     model = Task
     fields = "__all__"
     success_url = reverse_lazy("manager:task_list")
     template_name = "manager/task_form.html"
+
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get("pk")
+        if pk:
+            return Task.objects.get(pk=pk)
+        return None
