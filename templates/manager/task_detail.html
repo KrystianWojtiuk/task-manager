@@ -8,7 +8,12 @@
   <div class="container mt-4">
     <div class="card mb-4">
       <div class="card-body">
-        <h2 class="card-title">{{ task.name }}</h2>
+        <h2 class="card-title">{{ task.name }}
+          <a href="{% url 'manager:task-update' task.pk %}"
+             class="btn btn-primary">Update</a>
+          <a href="{% url 'manager:task-delete' task.pk %}"
+             class="btn btn-danger">Delete</a>
+        </h2>
         {% if object.description %}
           <p class="card-text">{{ task.description }}</p>
         {% endif %}
