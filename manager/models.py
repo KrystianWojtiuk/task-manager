@@ -1,5 +1,9 @@
+from datetime import timedelta
+
 from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils import timezone
 
 
 class Position(models.Model):
@@ -33,6 +37,11 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+
+    def clean(self):
+        super().clean()
+        if self.deadline < timezone.now() + timedelta(days=1):
+            raise ValidationError({"deadline": "Deadline must be at least 1 day from now."})
 
 
 class TaskType(models.Model):
@@ -69,3 +78,8 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
+
+    def clean(self):
+        super().clean()
+        if self.deadline < timezone.now() + timedelta(days=1):
+            raise ValidationError({"deadline": "Deadline must be at least 1 day from now."})
