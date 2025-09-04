@@ -10,7 +10,12 @@
     <!-- Project Info Card -->
     <div class="card mb-4">
       <div class="card-body">
-        <h2 class="card-title">{{ object.name }}</h2>
+        <h2 class="card-title">{{ object.name }}
+          <a href="{% url 'manager:project-update' object.pk %}"
+             class="btn btn-primary">Update</a>
+          <a href="{% url 'manager:project-delete' object.pk %}"
+             class="btn btn-danger">Delete</a>
+        </h2>
         {% if object.description %}
           <p class="card-text">{{ object.description }}</p>
         {% endif %}
