@@ -5,16 +5,21 @@ from .models import Project, Task
 
 
 class DeadlineValidationForm(forms.ModelForm):
-    """Base form for deadline validation logic."""
+    """Base form to validate that deadline is at least 1 day from now if incomplete."""
 
-    def clean_deadline(self):
-        deadline = self.cleaned_data.get("deadline")
-        is_complete = self.cleaned_data.get("is_complete", False)
+    def clean(self):
+        cleaned_data = super().clean()
+        deadline = cleaned_data.get("deadline")
+        is_complete = cleaned_data.get("is_complete", False)
 
-        if not is_complete and deadline < timezone.now() + timedelta(days=1):
-            raise forms.ValidationError("Deadline must be at least 1 day from now.")
+        if deadline and not is_complete:
+            if deadline < timezone.now() + timedelta(days=1):
+                self.add_error(
+                    "deadline",
+                    "Deadline must be at least 1 day from now for incomplete tasks/projects."
+                )
 
-        return deadline
+        return cleaned_data
 
 
 class ProjectForm(DeadlineValidationForm):
