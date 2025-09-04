@@ -38,11 +38,6 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
-    def clean(self):
-        super().clean()
-        if self.deadline < timezone.now() + timedelta(days=1):
-            raise ValidationError({"deadline": "Deadline must be at least 1 day from now."})
-
 
 class TaskType(models.Model):
     name = models.CharField(max_length=100)
@@ -78,8 +73,3 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
-
-    def clean(self):
-        super().clean()
-        if self.deadline < timezone.now() + timedelta(days=1):
-            raise ValidationError({"deadline": "Deadline must be at least 1 day from now."})

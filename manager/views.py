@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
+from manager.forms import ProjectForm, TaskForm
 from manager.models import Worker, Task, Project
 
 
@@ -61,7 +62,7 @@ class ProjectDetailView(LoginRequiredMixin, DetailView):
 
 class ProjectFormView(LoginRequiredMixin, CreateView, UpdateView):
     model = Project
-    fields = "__all__"
+    form_class = ProjectForm
     success_url = reverse_lazy("manager:projects")
     template_name = "manager/project_form.html"
 
@@ -104,7 +105,7 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
 
 class TaskFormView(LoginRequiredMixin, CreateView, UpdateView):
     model = Task
-    fields = "__all__"
+    form_class = TaskForm
     success_url = reverse_lazy("manager:tasks")
     template_name = "manager/task_form.html"
 
