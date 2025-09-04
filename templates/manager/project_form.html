@@ -8,4 +8,14 @@
     {{ form|crispy }}
     <input type="submit" value="Submit">
   </form>
+  
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          flatpickr(".flatpickr", {
+              enableTime: true,
+              dateFormat: "Y-m-d H:i",
+              time_24hr: true
+          });
+      });
+  </script>
 {% endblock %}
