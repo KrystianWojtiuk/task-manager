@@ -50,10 +50,6 @@
             <a href={% url 'manager:project-detail' task.project.id %}>{{ task.project.name }}</a>
           </td>
         </tr>
-      {% empty %}
-        <tr>
-          <td colspan="6" class="text-center">No tasks found</td>
-        </tr>
       {% endfor %}
       </tbody>
     </table>

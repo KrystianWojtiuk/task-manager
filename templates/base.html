@@ -20,7 +20,10 @@
         $(document).ready(function () {
             $('#myTable').DataTable({
                 "pageLength": 5,  // default rows per page
-                "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]]
+                "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
+                language: {
+                    emptyTable: "No data found"  // automatically shown if tbody is empty
+                }
             });
         });
     </script>

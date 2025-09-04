@@ -28,10 +28,6 @@
           <td>{{ project.deadline }}</td>
           <td>{{ project.is_complete|yesno:"✅,❌" }}</td>
         </tr>
-      {% empty %}
-        <tr>
-          <td colspan="6" class="text-center">No projects found</td>
-        </tr>
       {% endfor %}
       </tbody>
     </table>
