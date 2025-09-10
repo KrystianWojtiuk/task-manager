@@ -10,7 +10,6 @@
 - Assign tasks to multiple users
 - Project/task filtering and search with DataTables
 - Responsive forms styled with Crispy Forms
-- Scrollable assignees field for better usability
 
 ### 🛠️ Tech Stack
 - **Backend**: Django, SQLite
