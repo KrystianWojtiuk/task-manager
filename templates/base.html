@@ -25,7 +25,7 @@
             // Calculate table body height dynamically
             const windowHeight = $(window).height();        // total viewport height
             const headerHeight = $('h1').outerHeight(true); // height of page header(s)
-            const tableHeight = windowHeight - headerHeight - 200;
+            const tableHeight = windowHeight - headerHeight - 250;
 
             $('#myTable').DataTable({
                 "pageLength": 5,
@@ -57,7 +57,7 @@
       {% endblock %}
     </div>
     <div class="col-sm-10 d-flex justify-content-center">
-      <div class="content-wrapper" style="max-width: 800px; width:100%">
+      <div class="content-wrapper" style="width:100%">
         {% block content %}
 
         {% endblock %}
