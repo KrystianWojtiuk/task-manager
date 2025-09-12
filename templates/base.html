@@ -22,12 +22,27 @@
 
     <script>
         $(document).ready(function () {
+            // Calculate table body height dynamically
+            const windowHeight = $(window).height();        // total viewport height
+            const headerHeight = $('h1').outerHeight(true); // height of page header(s)
+            const tableHeight = windowHeight - headerHeight - 200;
+
             $('#myTable').DataTable({
-                "pageLength": 5,  // default rows per page
-                "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
+                "pageLength": 5,
+                "lengthMenu": [[5, 10, 25], [5, 10, 25]],
+                "scrollY": tableHeight + "px",  // dynamically set height
+                "scrollCollapse": false,
+                "paging": true,
                 language: {
-                    emptyTable: "No data found"  // automatically shown if tbody is empty
+                    emptyTable: "No projects found"
                 }
+            });
+
+            // Update table height on window resize
+            $(window).resize(function () {
+                const newHeight = $(window).height() - $('h1').outerHeight(true);
+                $('#myTable').DataTable().settings()[0].oScroll.sY = newHeight + "px";
+                $('#myTable').DataTable().draw(false);
             });
         });
     </script>
