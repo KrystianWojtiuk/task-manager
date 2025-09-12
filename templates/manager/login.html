@@ -8,7 +8,7 @@
 </head>
 <body class="bg-dark d-flex align-items-center justify-content-center vh-100 flex-column text-white">
 <h1 class="display-4">Tasks Manager</h1>
-<h5 class="mb-3"> by Krystian Wojtiuk</h5>
+<h5 class=" mb-3"> by Krystian Wojtiuk</h5>
 <div class="card shadow p-4" style="width: 100%; max-width: 22rem;">
   <h2 class="mb-3 text-center">Login</h2>
 
@@ -20,13 +20,18 @@
 
   <form method="post">
     {% csrf_token %}
-    <div class="mb-3">
-      {{ form.username.label_tag }}
-      {{ form.username }}
+    <div class="mb-3 row">
+      <label for="id_username" class="col-sm-4 col-form-label">Username</label>
+      <div class="col-sm-8">
+        {{ form.username }}
+      </div>
     </div>
-    <div class="mb-3">
-      {{ form.password.label_tag }}
-      {{ form.password }}
+
+    <div class="mb-3 row">
+      <label for="id_password" class="col-sm-4 col-form-label">Password</label>
+      <div class="col-sm-8">
+        {{ form.password }}
+      </div>
     </div>
     <button type="submit" class="btn btn-primary w-100">Login</button>
 
