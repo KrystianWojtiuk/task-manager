@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Project - {{ object.name }}
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+
+    <!-- Project Info Card -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h2 class="card-title">{{ object.name }}
+          <a href="{% url 'manager:project-update' object.pk %}"
+             class="btn btn-primary">Update</a>
+          <a href="{% url 'manager:project-delete' object.pk %}"
+             class="btn btn-danger">Delete</a>
+        </h2>
+        {% if object.description %}
+          <p class="card-text">{{ object.description }}</p>
+        {% endif %}
+        <p class="card-text"><strong>Deadline:</strong> {{ object.deadline }}</p>
+        <p class="card-text"><strong>Completed:</strong> {{ object.is_complete|yesno:"✅,❌" }}</p>
+      </div>
+    </div>
+
+    <!-- Project Tasks Table -->
+    <div class="card mb-4">
+      <div class="card-header bg-info text-white">
+        Tasks for this Project
+      </div>
+      <div class="card-body p-0">
+        <table class="table table-striped table-hover table-bordered mb-0">
+          <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Priority</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th>Assignees</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for task in object.tasks.all %}
+            <tr>
+              <td>
+                <a href="{% url 'manager:task-detail' task.id %}">
+                  {{ task.name }}
+                </a>
+              </td>
+              <td>{{ task.task_type }}</td>
+              <td>{{ task.priority }}</td>
+              <td>{{ task.deadline }}</td>
+              <td>{% if task.is_complete %}✅ Completed{% else %}⏳ In Progress{% endif %}</td>
+              <td>
+                {% for worker in task.assignees.all %}
+                  <a href="{% url 'manager:worker-detail' worker.id %}">{{ worker.first_name }} {{ worker.last_name }}</a>
+                  {% if not forloop.last %}, {% endif %}
+                {% empty %}
+                  No assignees
+                {% endfor %}
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="6" class="text-center">No tasks for this project</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <a href="{% url 'manager:projects' %}" class="btn btn-secondary mt-3">Back to projects</a>
+  </div>
+{% endblock %}

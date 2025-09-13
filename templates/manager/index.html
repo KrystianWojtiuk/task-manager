@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="text-center mb-5">
+      <h1 class="display-4">Tasks Manager</h1>
+      <h5 class="mb-3"> by Krystian Wojtiuk</h5>
+      <p class="lead">Overview of your team, projects and tasks.</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <!-- Workers Card -->
+      <div class="col-md-3 mb-3">
+        <div class="card text-center shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Workers</h5>
+            <p class="display-6">{{ num_workers }}</p>
+            <a href="{% url 'manager:workers' %}" class="btn btn-primary btn-sm">View Workers</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects Card -->
+      <div class="col-md-3 mb-3">
+        <div class="card text-center shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Projects</h5>
+            <p class="display-6">{{ num_projects }}</p>
+            <a href="{% url 'manager:projects' %}" class="btn btn-primary btn-sm">View Projects</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tasks Card -->
+      <div class="col-md-3 mb-3">
+        <div class="card text-center shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Tasks</h5>
+            <p class="display-6">{{ num_tasks }}</p>
+            <a href="{% url 'manager:tasks' %}" class="btn btn-primary btn-sm">View Tasks</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

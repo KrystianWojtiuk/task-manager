@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Projects
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="text-center mb-1">Projects <a href="{% url 'manager:project-create' %}" class="btn btn-success">
+      Add
+    </a></h1>
+    <table class="table table-striped table-hover table-bordered align-middle" id="myTable">
+      <thead class="table-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Deadline</th>
+        <th scope="col">Completed</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for project in projects %}
+        <tr>
+          <td>
+            <a href="{% url 'manager:project-detail' project.pk %}">
+              {{ project.name }}
+            </a>
+          </td>
+          <td>{{ project.deadline }}</td>
+          <td>{{ project.is_complete|yesno:"✅,❌" }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
