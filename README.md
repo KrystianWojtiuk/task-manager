@@ -1,6 +1,6 @@
 # task-manager
 
-#### A Django web application for managing projects and tasks with deadlines, priorities, and completion tracking.
+#### A Django web application for managing projects and tasks with deadlines, priorities and completion tracking.
 
 👉 [TRY IT LIVE](https://task-manager-49l5.onrender.com)
 
